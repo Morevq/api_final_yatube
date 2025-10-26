@@ -1,13 +1,14 @@
 from http import HTTPStatus
 
 import pytest
+from django.urls import reverse
 
 
 @pytest.mark.django_db(transaction=True)
 class TestJWT:
-    url_create = '/api/v1/jwt/create/'
-    url_refresh = '/api/v1/jwt/refresh/'
-    url_verify = '/api/v1/jwt/verify/'
+    url_create = reverse('api:token_obtain_pair')
+    url_refresh = reverse('api:token_refresh')
+    url_verify = reverse('api:token_verify')
 
     def check_request_with_invalid_data(self, client, url, invalid_data,
                                         expected_fields):

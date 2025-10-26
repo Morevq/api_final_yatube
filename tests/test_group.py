@@ -1,6 +1,7 @@
 from http import HTTPStatus
 
 import pytest
+from django.urls import reverse
 
 from posts.models import Group
 
@@ -8,7 +9,7 @@ from posts.models import Group
 @pytest.mark.django_db(transaction=True)
 class TestGroupAPI:
 
-    group_url = '/api/v1/groups/'
+    group_url = reverse('api:groups-list')
     group_detail_url = '/api/v1/groups/{group_id}/'
 
     def check_group_info(self, group_info, url):

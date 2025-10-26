@@ -11,6 +11,9 @@ class TestFollowAPI:
 
     url = '/api/v1/follow/'
 
+    def teardown_method(self):
+        Follow.objects.all().delete()
+
     def test_follow_not_found(self, user_client, follow_1, follow_2):
         response = user_client.get(self.url)
 
